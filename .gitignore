@@ -8,7 +8,6 @@ Library/
 Assets/AssetStoreTools*
 UserSettings/
 Logs/
-Packages/
 
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
