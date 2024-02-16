@@ -21,7 +21,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        controller.Move(playerSpeed * moveVector * Time.deltaTime);
+        forwardVector = playerCamera.transform.forward * inputVector.y;
+        rightVector = playerCamera.transform.right * inputVector.x;
+        moveVector = forwardVector + rightVector;
+
+        controller.Move(moveVector * playerSpeed * Time.deltaTime);
 
         gravityVector.y += -20 * Time.deltaTime;
         controller.Move(gravityVector * Time.deltaTime);
@@ -31,10 +35,5 @@ public class PlayerMovement : MonoBehaviour
         inputVector = inputValue.Get<Vector2>();
         moveVector.x = inputVector.x;
         moveVector.z = inputVector.y;
-
-        forwardVector = playerCamera.transform.forward * inputVector.y;
-        rightVector = playerCamera.transform.right * inputVector.x;
-
-        moveVector = forwardVector + rightVector;
     }
 }

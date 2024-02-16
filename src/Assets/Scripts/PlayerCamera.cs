@@ -32,7 +32,10 @@ public class PlayerCamera : MonoBehaviour
 
         cameraCurrent += inputVectorSmooth;
 
+        cameraCurrent.y = Mathf.Clamp (cameraCurrent.y, -30.0f, 30.0f);
+
         transform.localRotation = Quaternion.AngleAxis(-cameraCurrent.y, Vector3.right);
+
         playerParent.transform.localRotation = Quaternion.AngleAxis(cameraCurrent.x, playerParent.transform.up);
     }
 }
