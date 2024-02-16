@@ -13,11 +13,20 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "CameraLook",
+                    "type": "Value",
+                    "id": "3d2e4156-0a22-4a23-8c4c-969791c80c2d",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
                 {
-                    "name": "2DVector",
+                    "name": "WASD",
                     "id": "92c8a820-6ebf-453f-93ea-61ba9d480f96",
                     "path": "2DVector",
                     "interactions": "",
@@ -70,6 +79,17 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "d3e155bd-0129-4c77-a1c9-85b671395d71",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraLook",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
