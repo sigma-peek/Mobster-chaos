@@ -10,6 +10,8 @@ public class PlayerCamera : MonoBehaviour
     private Vector2 inputVector, inputVectorSmooth, cameraCurrent;
     private float sensitivty = 0.5f, smoothing = 0.5f;
 
+    private int fireCount = 1;
+
     void Awake()
     {
         playerParent = transform.parent.gameObject;
@@ -37,5 +39,10 @@ public class PlayerCamera : MonoBehaviour
         transform.localRotation = Quaternion.AngleAxis(-cameraCurrent.y, Vector3.right);
 
         playerParent.transform.localRotation = Quaternion.AngleAxis(cameraCurrent.x, playerParent.transform.up);
+    }
+    
+    private void OnFire() {
+        Debug.Log("Fire: " + fireCount);
+        fireCount++;
     }
 }
