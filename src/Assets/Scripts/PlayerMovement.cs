@@ -10,7 +10,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject playerCamera;
     private Vector2 inputVector;
     private Vector3 moveVector, forwardVector, rightVector, gravityVector;
-    private float playerSpeed = 6;
+    private float playerSpeed = 10;
+
+    private float playerHealth = 100f;
 
     // Start is called before the first frame update
     void Awake()
@@ -35,5 +37,17 @@ public class PlayerMovement : MonoBehaviour
         inputVector = inputValue.Get<Vector2>();
         moveVector.x = inputVector.x;
         moveVector.z = inputVector.y;
+    }
+
+    public void TakeDamage(float damage)
+    {
+        playerHealth -= damage;
+
+        Debug.Log(string.Format("Player health: {0}", playerHealth));
+
+        if (playerHealth == 0)
+        {
+            Debug.Log("Player is dead");
+        }
     }
 }

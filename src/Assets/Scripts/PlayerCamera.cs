@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,7 +11,7 @@ public class PlayerCamera : MonoBehaviour
     private Vector2 inputVector, inputVectorSmooth, cameraCurrent;
     private float sensitivty = 0.5f, smoothing = 0.5f;
 
-    private int fireCount = 1;
+    private float gunDamage = 25f, shootRange=100f;
 
     void Awake()
     {
@@ -42,7 +43,33 @@ public class PlayerCamera : MonoBehaviour
     }
     
     private void OnFire() {
-        Debug.Log("Fire: " + fireCount);
-        fireCount++;
+        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+        RaycastHit hitTarget;
+
+        if (Physics.Raycast(ray, out hitTarget, shootRange))
+        {
+            //Debug.Log(hitTarget.transform.name);
+
+            EnemyAI enemy = hitTarget.transform.GetComponent<EnemyAI>();
+
+            if (enemy != null)
+            {
+                enemy.GetShot(gunDamage);
+            }
+        }
     }
+
+    /*
+    public void TakeDamage(float damage)
+    {
+        playerHealth -= damage;
+
+        Debug.Log(string.Format("Player health: {0}", playerHealth));
+
+        if (playerHealth == 0)
+        {
+            Debug.Log("Player is dead");
+        }
+    }
+    */
 }
